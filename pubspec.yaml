@@ -1,6 +1,6 @@
 name: hive_local_storage_tanjim
 description: "hive local storage"
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/Lone-wolf-ai/local_storage
 repository: https://github.com/Lone-wolf-ai/local_storage
 

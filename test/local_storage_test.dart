@@ -6,18 +6,18 @@ import 'package:hive_local_storage_tanjim/local_storage.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('LocalStorage', () {
-    late LocalStorage localStorage;
+  group('TempCache', () {
+    late TempCache TempCache;
 
     setUp(() async {
       await Hive.initFlutter();
-      localStorage = LocalStorage();
-      await localStorage.init();
+      TempCache = TempCache();
+      await TempCache.init();
     });
 
     tearDown(() async {
-      await localStorage.clearAll();
-      await Hive.deleteBoxFromDisk('localStorage');
+      await TempCache.clearAll();
+      await Hive.deleteBoxFromDisk('TempCache');
       Hive.close();
     });
 
@@ -25,8 +25,8 @@ void main() {
       const key = 'test_key';
       const value = 'test_value';
 
-      await localStorage.saveData(key, value);
-      final result = localStorage.readData<String>(key);
+      await TempCache.saveData(key, value);
+      final result = TempCache.readData<String>(key);
 
       expect(result, equals(value));
     });
@@ -35,9 +35,9 @@ void main() {
       const key = 'test_key';
       const value = 'test_value';
 
-      await localStorage.saveData(key, value);
-      await localStorage.removeData(key);
-      final result = localStorage.readData<String>(key);
+      await TempCache.saveData(key, value);
+      await TempCache.removeData(key);
+      final result = TempCache.readData<String>(key);
 
       expect(result, isNull);
     });
@@ -48,11 +48,11 @@ void main() {
       const key2 = 'test_key2';
       const value2 = 'test_value2';
 
-      await localStorage.saveData(key1, value1);
-      await localStorage.saveData(key2, value2);
-      await localStorage.clearAll();
-      final result1 = localStorage.readData<String>(key1);
-      final result2 = localStorage.readData<String>(key2);
+      await TempCache.saveData(key1, value1);
+      await TempCache.saveData(key2, value2);
+      await TempCache.clearAll();
+      final result1 = TempCache.readData<String>(key1);
+      final result2 = TempCache.readData<String>(key2);
 
       expect(result1, isNull);
       expect(result2, isNull);

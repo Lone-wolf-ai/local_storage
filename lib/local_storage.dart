@@ -1,21 +1,21 @@
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class LocalStorage {
-  static final LocalStorage _instance = LocalStorage._internal();
+class TempCache {
+  static final TempCache _instance = TempCache._internal();
 
-  factory LocalStorage() {
+  factory TempCache() {
     return _instance;
   }
 
-  LocalStorage._internal();
+  TempCache._internal();
 
   late Box _storage;
 
   // Initialize Hive
   Future<void> init() async {
     await Hive.initFlutter();
-    _storage = await Hive.openBox('localStorage');
+    _storage = await Hive.openBox('TempCache');
   }
 
   // Generic method to save data
