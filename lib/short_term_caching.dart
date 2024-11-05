@@ -12,28 +12,28 @@ class TempCache {
 
   late Box _storage;
 
-  // Initialize Hive
+  // initialize hive
   Future<void> init() async {
     await Hive.initFlutter();
     _storage = await Hive.openBox('TempCache');
   }
 
-  // Generic method to save data
+  // generic method to save data
   Future<void> saveData<T>(String key, T value) async {
     await _storage.put(key, value);
   }
 
-  // Generic method to read data
+  // generic method to read data
   T? readData<T>(String key) {
     return _storage.get(key);
   }
 
-  // Generic method to remove data
+  // generic method to remove data
   Future<void> removeData(String key) async {
     await _storage.delete(key);
   }
 
-  // Clear all data in storage
+  // clear all data in storage
   Future<void> clearAll() async {
     await _storage.clear();
   }

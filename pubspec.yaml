@@ -1,6 +1,6 @@
-name: hive_local_storage_tanjim
-description: "hive local storage"
-version: 0.0.5
+name: short_term_caching
+description: "Temporary caching package"
+version: 0.0.6
 homepage: https://github.com/Lone-wolf-ai/local_storage
 repository: https://github.com/Lone-wolf-ai/local_storage
 

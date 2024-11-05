@@ -1,22 +1,22 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hive_local_storage_tanjim/local_storage.dart';
+import 'package:short_term_caching/short_term_caching.dart';
 
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('TempCache', () {
-    late TempCache TempCache;
+    late TempCache tempCache;
 
     setUp(() async {
       await Hive.initFlutter();
-      TempCache = TempCache();
-      await TempCache.init();
+      tempCache = TempCache();
+      await tempCache.init();
     });
 
     tearDown(() async {
-      await TempCache.clearAll();
+      await tempCache.clearAll();
       await Hive.deleteBoxFromDisk('TempCache');
       Hive.close();
     });
@@ -25,8 +25,8 @@ void main() {
       const key = 'test_key';
       const value = 'test_value';
 
-      await TempCache.saveData(key, value);
-      final result = TempCache.readData<String>(key);
+      await tempCache.saveData(key, value);
+      final result = tempCache.readData<String>(key);
 
       expect(result, equals(value));
     });
@@ -35,9 +35,9 @@ void main() {
       const key = 'test_key';
       const value = 'test_value';
 
-      await TempCache.saveData(key, value);
-      await TempCache.removeData(key);
-      final result = TempCache.readData<String>(key);
+      await tempCache.saveData(key, value);
+      await tempCache.removeData(key);
+      final result = tempCache.readData<String>(key);
 
       expect(result, isNull);
     });
@@ -48,11 +48,11 @@ void main() {
       const key2 = 'test_key2';
       const value2 = 'test_value2';
 
-      await TempCache.saveData(key1, value1);
-      await TempCache.saveData(key2, value2);
-      await TempCache.clearAll();
-      final result1 = TempCache.readData<String>(key1);
-      final result2 = TempCache.readData<String>(key2);
+      await tempCache.saveData(key1, value1);
+      await tempCache.saveData(key2, value2);
+      await tempCache.clearAll();
+      final result1 = tempCache.readData<String>(key1);
+      final result2 = tempCache.readData<String>(key2);
 
       expect(result1, isNull);
       expect(result2, isNull);
