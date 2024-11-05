@@ -49,6 +49,7 @@ TempCache is a lightweight, in-memory data storage solution built using Hive and
 
 * **Key Selection:** Choose meaningful keys to easily identify and retrieve data.
 * **Data Validation:** Implement data validation to ensure data integrity.
+* ai generated.
 * **Error Handling:** Consider error handling for operations like saving, reading, and removing data.
 
 By following these guidelines and leveraging TempCache's simplicity, you can effectively manage short-term data storage in your Flutter applications.
